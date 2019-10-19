@@ -1,0 +1,21 @@
+{
+  "name": "project_x",
+  "version": "1.0.0",
+  "description": "Image captioning of uploaded images",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "amritk10",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "multer": "^1.4.2",
+    "path": "^0.12.7",
+    "python-shell": "^1.0.8"
+  }
+}

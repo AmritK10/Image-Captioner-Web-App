@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="jumbotron">
+		<h1 style="text-align: center;">Generated Caption</h1>
+	</div>
+	<div class="mx-auto">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<h1 style="text-align: center;">Image</h1>
+					<div class="thumbnail">
+						<img class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" src="/images/<%=filename%>">
+					</div>
+					<h1 style="text-align: center;">Caption: <span style="font-weight: bolder;"><%=caption[0]%></span>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

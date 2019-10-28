@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Image</title>
+	<title>Image Caption</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -14,10 +14,13 @@
 				<div class="col-xl-12">
 					<h1 style="text-align: center;">Image</h1>
 					<div class="thumbnail">
-						<img class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" src="/images/<%=filename%>">
+						<img class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" src="<%=Image.img_path%>">
+						<h1 style="text-align: center;">Caption: <span style="font-weight: bolder;"><%=Image.img_caption%></span></h1>
+						<form class="delete-form" action="/images/<%=Image._id%>?_method=DELETE" method="POST">
+							<a href="/images" class="btn btn-lg btn-success">Home</a>
+							<input type="submit" class="btn btn-lg btn-danger" value="Delete">	
+						</form>
 					</div>
-					<h1 style="text-align: center;">Caption: <span style="font-weight: bolder;"><%=caption[0]%></span>
-					</h1>
 				</div>
 			</div>
 		</div>

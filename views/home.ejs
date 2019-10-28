@@ -5,23 +5,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<div class="container ">
-		<div class="row">
-			<div class="col-lg-12">
-				<div style="width:40%; margin:25px auto; padding: 10px;" class="border border-warning">
-					<h1 style="text-align: center;">Image Captioner</h1>
-						<form action="/upload" method="post" enctype="multipart/form-data">
-							<div class="form-group">
-								<label for="img" ><strong>Upload Image:</strong> </label>
-								<input id="img" type="file" accept="image/*" name="photo">
-							</div>
-							<div>
-								<button class="btn btn-primary">Submit!</button>
-							</div>
-						</form>
-				</div>
-			</div>
-		</div>
+	<div class="jumbotron">
+		<h1 style="text-align: center;">Welcome to Image Caption Generator!</h1>
+	</div>
+	<div>
+		<a href="/images" class="btn btn-lg btn-success">View Sample Images</a>
 	</div>
 </body>
 </html>

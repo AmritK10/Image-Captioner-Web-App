@@ -101,6 +101,21 @@ app.get("/images/:id",function(req,res){
 
 //DELETE Route
 app.delete("/images/:id",function(req,res){
+  Image.findById(req.params.id,function(err,foundImage){
+    if(err){
+      console.log(err);
+    }
+    else{
+      fs.unlink("./public"+foundImage.img_path, function(err){
+        if (err){
+          console.log(err);
+        }
+        else{
+          console.log('deleted');
+        }
+      });
+    }
+  });
   Image.findByIdAndDelete(req.params.id,function(err){
     if(err){
       console.log(err);

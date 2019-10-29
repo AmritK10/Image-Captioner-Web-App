@@ -19,11 +19,18 @@ app.set("view engine","ejs");
 var url =process.env.DATABASEURL || "mongodb://localhost:27017/imgs";
 var upload = multer({dest: __dirname + "/public/images"});
 
-mongoose.connect(url,{useNewUrlParser:true});
+mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology: true,});
 
 var imageSchema  =  new mongoose.Schema({
     img_path:String,
-    img_caption:String
+    img_caption:String,
+    author:{
+      id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+      },
+      username:String
+    }
 });
 var UserSchema = new mongoose.Schema({
 	username: String,
@@ -72,14 +79,14 @@ app.get("/images",function(req,res){
 });
 
 //NEW Route
-app.get("/images/new",function(req,res){
+app.get("/images/new",isLoggedIn,function(req,res){
   res.render("new");
 });
 
 //CREATE Route
-app.post("/images",upload.single("photo"),function(req, res){
+app.post("/images",isLoggedIn,upload.single("photo"),function(req, res){
     const tempPath = req.file.path;
-    const targetPath = path.join(__dirname, "/public/images/"+req.file.originalname);
+    const targetPath = path.join(__dirname, "/public/images/"+req.user.username+req.file.originalname);
     // console.log(req.file);
     // console.log(targetPath);
       fs.rename(tempPath, targetPath, function(err){
@@ -98,8 +105,16 @@ app.post("/images",upload.single("photo"),function(req, res){
               res.send(err);
             }
             else{
-              var file_path="/images/" + req.file.originalname;
-              var newImage={img_path:file_path,img_caption:data[0]};
+              var file_path="/images/" +req.user.username + req.file.originalname;
+              var author={
+                id:req.user._id,
+                username:req.user.username
+              };
+              var newImage={
+                img_path:file_path,
+                img_caption:data[0],
+                author:author
+              };
               Image.create(newImage,function(err,newlyCreated){
                 if(err){
                   console.log(err);
@@ -129,7 +144,7 @@ app.get("/images/:id",function(req,res){
 });
 
 //DELETE Route
-app.delete("/images/:id",function(req,res){
+app.delete("/images/:id",checkImageOwnership,function(req,res){
   Image.findById(req.params.id,function(err,foundImage){
     if(err){
       console.log(err);
@@ -191,6 +206,34 @@ app.get("/logout",function(req,res){
 	res.redirect("/images");
 });
 
+
+//middleware
+function isLoggedIn(req,res,next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect("/login");
+}
+function checkImageOwnership(req,res,next){
+	if(req.isAuthenticated()){
+		Image.findById(req.params.id,function(err,foundImage){
+			if(err || !foundImage){
+				res.redirect("back");
+			}
+			else{
+				if(foundImage.author.id.equals(req.user._id)){
+					next();
+				}
+				else{
+					res.redirect("back");
+				}
+			}
+		});
+	}
+	else{
+		res.redirect("back");
+	}
+}
 app.listen(3000,function(){
 	console.log("Server Started");
 });

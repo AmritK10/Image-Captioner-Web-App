@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Captioner</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0 1rem">
+    <a class="navbar-brand" href="/">Image Captioner</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/images">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/images/new">Upload</a>
+        </li>
+        </ul>
+        <span class="navbar-text" style="padding: 0 0;">
+            <ul class="navbar-nav mr-auto">
+                <%if(!currentUser){%>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Sign Up</a></li>
+                <%}else{%>
+                    <li class="nav-item"><a class="nav-link" href="#">Signed In As <%=currentUser.username %></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                <%}%>
+            </ul>
+        </span>
+    </div>
+</nav>

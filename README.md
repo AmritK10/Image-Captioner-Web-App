@@ -4,9 +4,15 @@ Users can upload their images using the upload form.<br>
 The Deep Learning model will generate the captions and display them.<br>
 
 # Getting Started
+## Terminal Window 1
 ```
 npm install
 npm run start
+```
+## Terminal Window 2
+```
+mkdir data
+./mongod
 ```
 # Demo
 ## Image uploading form

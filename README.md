@@ -15,9 +15,15 @@ mkdir data
 ./mongod
 ```
 # Demo
-## Image uploading form
-<img width="782" alt="Screenshot 2019-10-19 at 1 28 49 PM" src="https://user-images.githubusercontent.com/31596604/67140065-68ce7600-f274-11e9-90f0-e4da3ab53cfe.png"><br>
-## Samples of Generated Captions
-<img width="796" alt="Screenshot 2019-10-18 at 10 04 42 PM" src="https://user-images.githubusercontent.com/31596604/67140021-ec3b9780-f273-11e9-8b21-aacbdc489853.png"><br>
-<img width="816" alt="Screenshot 2019-10-18 at 9 59 42 PM" src="https://user-images.githubusercontent.com/31596604/67140023-ef368800-f273-11e9-8242-c61a9f29e1f3.png"><br>
-<img width="887" alt="Screenshot 2019-10-18 at 9 58 12 PM" src="https://user-images.githubusercontent.com/31596604/67140024-f198e200-f273-11e9-9eb2-e19c346e1e02.png"><br>
+## Home Page
+<img width="1440" alt="Screenshot 2019-10-29 at 11 23 33 PM" src="https://user-images.githubusercontent.com/31596604/67795531-67871f80-faa4-11e9-9923-023359e25e63.png"> </br>
+## The Sample Image Captions
+<img width="1440" alt="Screenshot 2019-10-29 at 11 27 58 PM" src="https://user-images.githubusercontent.com/31596604/67795281-065f4c00-faa4-11e9-8086-8d890adfa8f7.png"> </br>
+## Image Caption Details Page
+<img width="1440" alt="Screenshot 2019-10-29 at 11 25 27 PM" src="https://user-images.githubusercontent.com/31596604/67795282-06f7e280-faa4-11e9-9d77-827d14964390.png"> </br>
+## Image Uploading Form
+<img width="1440" alt="Screenshot 2019-10-29 at 11 24 46 PM" src="https://user-images.githubusercontent.com/31596604/67795283-06f7e280-faa4-11e9-800c-df809b14aeb4.png"> </br>
+## Sign Up Form
+<img width="1440" alt="Screenshot 2019-10-29 at 11 24 27 PM" src="https://user-images.githubusercontent.com/31596604/67795286-06f7e280-faa4-11e9-8ff8-a3dd3f1ac41d.png"> </br>
+## Login Form
+<img width="1440" alt="Screenshot 2019-10-29 at 11 23 55 PM" src="https://user-images.githubusercontent.com/31596604/67795287-07907900-faa4-11e9-9038-72fe14cb5a3e.png"> </br>

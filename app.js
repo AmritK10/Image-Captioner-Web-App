@@ -1,11 +1,14 @@
-var methodOverride			=	require("method-override"),
-    express             = require("express"),
-    mongoose            =	require("mongoose"),
-    bodyParser          = require("body-parser"),
-  	pyShell 	          = require("python-shell"),
-  	multer 		          = require("multer"),
-  	path 		            = require("path"),
-  	fs 			            = require("fs");
+var methodOverride			    =	require("method-override"),
+    express                 = require("express"),
+    mongoose                =	require("mongoose"),
+    bodyParser              = require("body-parser"),
+    pyShell 	              = require("python-shell"),
+    passport 				        = require("passport"),
+    LocalStrategy			      = require("passport-local"),
+    passportLocalMongoose	  = require("passport-local-mongoose");
+  	multer 		              = require("multer"),
+  	path 		                = require("path"),
+  	fs 			                = require("fs");
 
 var app=express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -22,8 +25,34 @@ var imageSchema  =  new mongoose.Schema({
     img_path:String,
     img_caption:String
 });
+var UserSchema = new mongoose.Schema({
+	username: String,
+	password: String
+});
+UserSchema.plugin(passportLocalMongoose);
 
+var User    =   mongoose.model("User",UserSchema);
 var Image   =   mongoose.model("Image",imageSchema);
+
+
+//PASSPORT COONFIGURATION
+app.use(require("express-session")({
+	secret:"Once again rusty wins cutest dog!",
+	resave:false,
+	saveUninitialized:false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//Passing Current User to all
+app.use(function(req,res,next){
+  res.locals.currentUser=req.user;
+  next();
+});
 
 //Root Route
 app.get("/",function(req,res){
@@ -124,6 +153,42 @@ app.delete("/images/:id",function(req,res){
       res.redirect("/images");
     }
   });
+});
+
+//Auth Routes
+//Sign Up
+app.get("/register",function(req,res){
+	res.render("register");
+});
+
+app.post("/register",function(req,res){
+	var newUser=new User({username:req.body.username});
+	User.register(newUser,req.body.password,function(err,user){
+		if(err){
+			res.redirect("/register");
+		}
+		else{
+			passport.authenticate("local")(req,res,function(){
+				res.redirect("/images");
+			});
+		}
+	});
+});
+
+//Login
+app.get("/login",function(req,res){
+	res.render("login");
+});
+app.post("/login",passport.authenticate("local",{
+	successRedirect:"/images",
+	failureRedirect:"/login"
+}),function(req,res){
+});
+
+//Logout
+app.get("/logout",function(req,res){
+	req.logout();
+	res.redirect("/images");
 });
 
 app.listen(3000,function(){

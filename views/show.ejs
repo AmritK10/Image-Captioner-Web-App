@@ -7,14 +7,16 @@
 			<div class="row">
 				<div class="col-xl-12">
 					<h1 style="text-align: center;">Image</h1>
+					<h6 style="text-align: right;">Posted By: <%=Image.author.username%></h6>
 					<div class="thumbnail">
 						<img class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" src="<%=Image.img_path%>">
 						<h1 style="text-align: center;">Caption: <span style="font-weight: bolder;"><%=Image.img_caption%></span></h1>
-						<form class="delete-form" action="/images/<%=Image._id%>?_method=DELETE" method="POST">
-							<a href="/images" class="btn btn-lg btn-success">Home</a>
-							<input type="submit" class="btn btn-lg btn-danger" value="Delete">	
-						</form>
 					</div>
+					<form class="delete-form form-inline justify-content-center" action="/images/<%=Image._id%>?_method=DELETE" method="POST">
+						<div class="form-group">
+							<input type="submit" class="btn btn-lg btn-danger" value="Delete">
+						</div>	
+					</form>
 				</div>
 			</div>
 		</div>

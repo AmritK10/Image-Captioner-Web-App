@@ -24,6 +24,7 @@ mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology: true,});
 var imageSchema  =  new mongoose.Schema({
     img_path:String,
     img_caption:String,
+    img_public:Boolean,
     author:{
       id:{
         type:mongoose.Schema.Types.ObjectId,
@@ -110,9 +111,14 @@ app.post("/images",isLoggedIn,upload.single("photo"),function(req, res){
                 id:req.user._id,
                 username:req.user.username
               };
+              var pub=false;
+              if(req.body.public){
+                pub=true;
+              }
               var newImage={
                 img_path:file_path,
                 img_caption:data[0],
+                img_public:pub,
                 author:author
               };
               Image.create(newImage,function(err,newlyCreated){

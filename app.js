@@ -206,6 +206,18 @@ app.get("/logout",function(req,res){
 	res.redirect("/images");
 });
 
+//USER Routes
+//SHOW Route
+app.get("/user/:id",function(req,res){
+  Image.find({},function(err,allImages){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("user/show",{images:allImages});
+    }
+  });
+});
 
 //middleware
 function isLoggedIn(req,res,next){

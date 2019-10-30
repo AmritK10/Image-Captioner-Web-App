@@ -149,6 +149,22 @@ app.get("/images/:id",function(req,res){
 
 });
 
+//UPDATE Route
+app.put("/images/:id",checkImageOwnership,function(req,res){
+  var pub=false;
+  if(req.body.public){
+    pub=true;
+  }
+	Image.updateOne({_id:req.params.id},{img_public:pub},function(err,affected,resp){
+		if(err){
+			res.redirect("/images");
+		}
+		else{
+			res.redirect("/images/" + req.params.id);
+		}
+	});
+});
+
 //DELETE Route
 app.delete("/images/:id",checkImageOwnership,function(req,res){
   Image.findById(req.params.id,function(err,foundImage){

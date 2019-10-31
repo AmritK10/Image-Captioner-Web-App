@@ -5,7 +5,9 @@ var methodOverride			    =	require("method-override"),
     pyShell 	              = require("python-shell"),
     passport 				        = require("passport"),
     LocalStrategy			      = require("passport-local"),
-    passportLocalMongoose	  = require("passport-local-mongoose");
+    passportLocalMongoose	  = require("passport-local-mongoose"),
+    User 					          = require("./models/user"),
+    Image 					        = require("./models/image"),
   	multer 		              = require("multer"),
   	path 		                = require("path"),
   	fs 			                = require("fs");
@@ -20,28 +22,6 @@ var url =process.env.DATABASEURL || "mongodb://localhost:27017/imgs";
 var upload = multer({dest: __dirname + "/public/images"});
 
 mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology: true,});
-
-var imageSchema  =  new mongoose.Schema({
-    img_path:String,
-    img_caption:String,
-    img_public:Boolean,
-    author:{
-      id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-      },
-      username:String
-    }
-});
-var UserSchema = new mongoose.Schema({
-	username: String,
-	password: String
-});
-UserSchema.plugin(passportLocalMongoose);
-
-var User    =   mongoose.model("User",UserSchema);
-var Image   =   mongoose.model("Image",imageSchema);
-
 
 //PASSPORT COONFIGURATION
 app.use(require("express-session")({

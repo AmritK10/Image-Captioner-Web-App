@@ -7,8 +7,14 @@
 <li>The Deep Learning model will generate the captions and display them.</li>
 <li>Furthermore users can make their uploaded images public for others to see.</li>
 <li>Uploaded images and Generated captions of a user are available at their profile page.</li>
-<ul>
-  
+</ul>
+
+
+## Technologies Used
+<b>Machine Learning: </b> LSTM, Keras, OpenCV <br>
+<b>Front End: </b> Html5, Css, Bootstrap <br>
+<b>Backend: </b> Nodejs, Expressjs, MongoDB
+
 # Getting Started
 ## Terminal Window 1
 ```

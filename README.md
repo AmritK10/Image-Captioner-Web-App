@@ -12,7 +12,7 @@
 
 ## Technologies Used
 <b>Machine Learning: </b> LSTM, Keras, OpenCV <br>
-<b>Front End: </b> Html5, Css, Bootstrap <br>
+<b>Front End: </b> Html5, Bootstrap, Javascript <br>
 <b>Backend: </b> Nodejs, Expressjs, MongoDB
 
 # Getting Started

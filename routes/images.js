@@ -6,7 +6,8 @@ var middleware  = require("../middleware");
 var pyShell 	              = require("python-shell"),
     multer 		              = require("multer"),
   	path 		                = require("path"),
-  	fs 			                = require("fs");
+    fs 			                = require("fs"),
+    request                 = require("request");
 
 var upload = multer({dest: path.join(__dirname, "../public/images/")});
 //console.log("lol",__dirname);
@@ -39,17 +40,24 @@ router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req,
             return res.status(500).contentType("text/plain").end("Oops! Something went wrong!");
           }
           else{
-            var options = {
-              args:
-              [
-                targetPath
-              ]
-            }
-            pyShell.PythonShell.run("./generate.py", options, function (err, data) {
-              if (err){
-                res.send(err);
+            let url = "http://localhost:5000/api"; 
+            var fileName = targetPath;
+            const formData = {
+              file: {
+                value:  fs.createReadStream(targetPath),
+                options: {
+                  filename: targetPath,
+                  contentType: 'image/jpg'
+                }
+              }
+            };
+            request.post({url:url, formData: formData}, function optionalCallback(err, httpResponse, body) {
+              if (err) {
+                return console.error('Upload Failed:', err);
               }
               else{
+                console.log("API Request successful!")
+                // console.log('Upload successful!  Server responded with:', body);
                 var file_path="/images/" +req.user.username + req.file.originalname;
                 var author={
                   id:req.user._id,
@@ -61,7 +69,7 @@ router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req,
                 }
                 var newImage={
                   img_path:file_path,
-                  img_caption:data[0],
+                  img_caption:body,
                   img_public:pub,
                   author:author
                 };

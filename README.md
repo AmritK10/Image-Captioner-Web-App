@@ -28,6 +28,7 @@ mkdir data
 ```
 ## Terminal Window 2 - Start Flask Server
 ```
+pip install -r requirements.txt
 mkdir static
 python3 flask_app.py
 ```

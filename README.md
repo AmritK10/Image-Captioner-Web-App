@@ -13,18 +13,23 @@
 ## Technologies Used
 <b>Machine Learning: </b> LSTM, Keras, OpenCV <br>
 <b>Front End: </b> Html5, Bootstrap, Javascript <br>
-<b>Backend: </b> Nodejs, Expressjs, MongoDB
+<b>Backend: </b> Nodejs, Flask, Expressjs, MongoDB
 
 # Getting Started
-## Terminal Window 1
+## Terminal Window 1 - Start Node Server
 ```
 npm install
 npm run start
 ```
-## Terminal Window 2
+## Terminal Window 2 - Start Mongo Server
 ```
 mkdir data
 ./mongod
+```
+## Terminal Window 2 - Start Flask Server
+```
+mkdir static
+python3 flask_app.py
 ```
 # Demo
 ## Home Page

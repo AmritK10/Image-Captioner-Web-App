@@ -30,7 +30,7 @@ mkdir data
 ```
 pip install -r requirements.txt
 mkdir static
-python3 flask_app.py
+python flask_app.py
 ```
 # Demo
 ## Home Page

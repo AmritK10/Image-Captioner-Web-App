@@ -24,6 +24,7 @@ mkdir Mongo/data
 mkdir Flask/static
 docker-compose up
 ```
+## After Running the above commands open: http://localhost:3000/
 # Demo
 ## Home Page
 <img width="1440" alt="Screenshot 2019-10-29 at 11 23 33 PM" src="https://user-images.githubusercontent.com/31596604/67795531-67871f80-faa4-11e9-9923-023359e25e63.png"> </br>

@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+<div class="jumbotron" style="padding-left: 1rem; padding-bottom: 0.5rem;">
+    <h1 style="text-align: center;">Hello <%=currentUser.username%>!</h1>
+</div>
+<div class="container" style="height: 50%;width: 50%;">
+        <h2 style="text-align: center;">Your Generated Image Captions:</h2>
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+                <% images.forEach(function(image){ %>
+                    <% if(currentUser && image.author.id.equals(currentUser._id)){%>
+                        <div class="col-sm-12">
+                        <div class="thumbnail">
+                            <img class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" src="<%=image.img_path %>">
+                            <div class="caption">
+                                <h4><strong>Caption: </strong><%=image.img_caption%></h4>
+                            </div>
+                            <p>
+                            <a href="/images/<%=image._id%>" class="btn btn-sm btn-success">Show Details</a>
+                            </p>
+                        </div>
+                        </div>
+                    <%}%>
+                <%});%>	
+        </div>
+</div>
+<% include ../partials/footer %>

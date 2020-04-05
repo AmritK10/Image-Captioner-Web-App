@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+	<div class="jumbotron">
+		<h1 style="text-align: center;">Generated Caption</h1>
+	</div>
+	<div class="mx-auto">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<h1 style="text-align: center;">Image</h1>
+					<h6 style="text-align: right;">Posted By: <%=Image.author.username%></h6>
+					<div class="thumbnail">
+						<img class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" src="<%=Image.img_path%>">
+						<h1 style="text-align: center;">Caption: <span style="font-weight: bolder;"><%=Image.img_caption%></span></h1>
+					</div>
+					<form class="delete-form form-inline justify-content-center" action="/images/<%=Image._id%>?_method=DELETE" method="POST">
+						<div class="form-group">
+							<input type="submit" class="btn btn-lg btn-danger" value="Delete">
+						</div>	
+					</form>
+					<form class="delete-form form-inline justify-content-center" action="/images/<%=Image._id%>?_method=PUT" method="POST">
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="customSwitch1" name="public" <% if(Image.img_public){ %> checked <%}%> >
+							<label class="custom-control-label" for="customSwitch1"><strong>Make Public</strong></label>
+						</div>
+						<div style="padding-left:.5rem">
+							<button class="btn btn-xs btn-primary">Submit!</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<% include ../partials/footer %>

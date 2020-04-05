@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+	<div class="container ">
+		<div class="row">
+			<div class="col-lg-12">
+				<div style="width:40%; margin:25px auto; padding: 10px;" class="border border-warning">
+					<h1 style="text-align: center;">Image Captioner</h1>
+						<form action="/images" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="img" ><strong>Upload Image:</strong> </label>
+								<input id="img" type="file" accept="image/*" name="photo">
+							</div>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="customSwitch1" name="public" checked>
+								<label class="custom-control-label" for="customSwitch1"><strong>Make Public</strong></label>
+							</div>
+							<div>
+								<button class="btn btn-primary">Submit!</button>
+							</div>
+						</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<% include ../partials/footer %>

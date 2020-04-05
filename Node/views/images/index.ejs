@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+    <div class="jumbotron">
+      <h1 style="text-align: center;">Sample Generated Captions</h1>
+      <p>
+        <a href="/images/new" class="btn btn-lg btn-success">Upload form</a>
+      </p>
+    </div>
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+      <% images.forEach(function(image){ %>
+        <% if(image.img_public){%>
+          <div class="col-md-4 col-sm-6 ">
+            <div class="thumbnail">
+              <img class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" src="<%=image.img_path %>">
+              <div class="caption">
+                  <h4><strong>Caption: </strong><%=image.img_caption%></h4>
+              </div>
+              <p>
+                <a href="/images/<%=image._id%>" class="btn btn-sm btn-success">Show Details</a>
+              </p>
+            </div>
+          </div>
+        <%}%>
+      <%});%>	
+    </div>
+<% include ../partials/footer %>

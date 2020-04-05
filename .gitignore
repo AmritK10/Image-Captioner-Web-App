@@ -1,6 +1,6 @@
 # Don't track content of these folders
-node_modules/
-data/
-public/
-static/
-__pycache__/
+Node/node_modules/
+Mongo/data/
+Node/public/
+Flask/static/
+Flask/__pycache__/

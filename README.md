@@ -13,24 +13,16 @@
 ## Technologies Used
 <b>Machine Learning: </b> LSTM, Keras, OpenCV <br>
 <b>Front End: </b> Html5, Bootstrap, Javascript <br>
-<b>Backend: </b> Nodejs, Flask, Expressjs, MongoDB
+<b>Backend: </b> Nodejs, Flask, Expressjs, MongoDB <br>
+<b>Containerised using Docker </b> <br>
 
 # Getting Started
-## Terminal Window 1 - Start Node Server
+## Requirements - Have Docker intstalled
+## Terminal Window
 ```
-npm install
-npm run start
-```
-## Terminal Window 2 - Start Mongo Server
-```
-mkdir data
-./mongod
-```
-## Terminal Window 2 - Start Flask Server
-```
-pip install -r requirements.txt
-mkdir static
-python flask_app.py
+mkdir Mongo/data
+mkdir Flask/static
+docker-compose up
 ```
 # Demo
 ## Home Page

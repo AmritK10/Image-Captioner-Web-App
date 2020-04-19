@@ -1,0 +1,25 @@
+version: "3"
+services:
+  app:
+    container_name: app
+    restart: always
+    image: amritk10/img_cap_app
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+      - api
+  api:
+    container_name: api
+    image: amritk10/img_cap_api
+    ports:
+        - "5000:5000"
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+        - db-data:/data/db
+    ports:
+      - "27017:27017"  
+volumes:
+  db-data:

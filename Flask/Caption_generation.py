@@ -1,8 +1,8 @@
-from keras.models import load_model
-from keras.applications.resnet50 import ResNet50
-from keras.applications.resnet50 import preprocess_input
-from keras.preprocessing.sequence import pad_sequences
-from keras.preprocessing import image
+from tensorflow.keras.models import load_model
+from tensorflow.keras.applications.resnet50 import ResNet50
+from tensorflow.keras.applications.resnet50 import preprocess_input
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing import image
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
@@ -13,10 +13,8 @@ import sys
 max_length=40
 
 new_model=load_model("Model_data/Img_cap_model.h5")
-new_model._make_predict_function()
 
 Rmodel=load_model("Model_data/ResNet50.h5")
-Rmodel._make_predict_function()
 
 w2i_file=open("Model_data/words_to_indices.p","rb")
 words_to_indices2 = pickle.load(w2i_file)

@@ -10,7 +10,6 @@ var pyShell 	              = require("python-shell"),
     request                 = require("request");
 
 var upload = multer({dest: path.join(__dirname, "../public/images/")});
-//console.log("lol",__dirname);
 
 //INDEX Route
 router.get("/images",function(req,res){
@@ -33,8 +32,6 @@ router.get("/images/new",middleware.isLoggedIn,function(req,res){
 router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req, res){
       const tempPath = req.file.path;
       const targetPath = path.join(__dirname, "../public/images/"+req.user.username+req.file.originalname);
-      // console.log(req.file);
-      // console.log(targetPath);
         fs.rename(tempPath, targetPath, function(err){
           if(err){
             return res.status(500).contentType("text/plain").end("Oops! Something went wrong!");
@@ -57,7 +54,6 @@ router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req,
               }
               else{
                 console.log("API Request successful!")
-                // console.log('Upload successful!  Server responded with:', body);
                 var file_path="/images/" +req.user.username + req.file.originalname;
                 var author={
                   id:req.user._id,
@@ -79,7 +75,6 @@ router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req,
                   }
                   else{
                     res.redirect("images/"+newlyCreated._id);
-                    // res.render("show",{Image:newlyCreated});
                   }
                 });
               }

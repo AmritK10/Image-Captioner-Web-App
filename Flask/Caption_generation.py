@@ -87,10 +87,6 @@ def get_enc(img_path):
     photo=features.squeeze()
     return photo
 
-
-# candidate=beam_search2(photo,3)
-# print(" ".join(candidate))
-
 def get_caption(img_path):
     enc=get_enc(img_path)
     caption=greedy_search(enc)

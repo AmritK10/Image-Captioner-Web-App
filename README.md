@@ -5,7 +5,7 @@
 <li>Users first Sign Up.</li>
 <li>Logged In users can upload their images using the upload form.</li>
 <li>The Deep Learning model will generate the captions and display them.</li>
-<li>Furthermore users can make their uploaded images public for others to see.</li>
+<li>Furthermore, users can make their uploaded images public for others to see.</li>
 <li>Uploaded images and Generated captions of a user are available at their profile page.</li>
 </ul>
 
@@ -20,11 +20,9 @@
 ## Requirements - Have Docker intstalled
 ## Terminal Window
 ```
-mkdir Mongo/data
-mkdir Flask/static
 docker-compose up
 ```
-## After Running the above commands open: http://localhost:3000/
+## After Running the above command open: http://localhost:3000/
 # Demo
 ## Home Page
 <img width="1440" alt="Screenshot 2019-10-29 at 11 23 33 PM" src="https://user-images.githubusercontent.com/31596604/67795531-67871f80-faa4-11e9-9923-023359e25e63.png"> </br>

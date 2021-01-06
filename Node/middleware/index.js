@@ -2,13 +2,15 @@ var Image      = require("../models/image");
 
 var middlewareObj = {};
 
-//middleware
+// Check auth status 
 middlewareObj.isLoggedIn = function(req,res,next){
 	if(req.isAuthenticated()){
 		return next();
 	}
 	res.redirect("/login");
 }
+
+// Check image ownership
 middlewareObj.checkImageOwnership = function(req,res,next){
 	if(req.isAuthenticated()){
 		Image.findById(req.params.id,function(err,foundImage){
@@ -30,4 +32,4 @@ middlewareObj.checkImageOwnership = function(req,res,next){
 	}
 }
 
-module.exports=middlewareObj;
+module.exports = middlewareObj;

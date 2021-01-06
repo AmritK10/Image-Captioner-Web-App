@@ -1,17 +1,19 @@
 var express     = require("express");
-var router      = express.Router();
-var Image  = require("../models/image");
+var Image       = require("../models/image");
 var middleware  = require("../middleware");
 
-var pyShell 	              = require("python-shell"),
-    multer 		              = require("multer"),
-  	path 		                = require("path"),
-    fs 			                = require("fs"),
-    request                 = require("request");
+var pyShell 	  = require("python-shell"),
+    multer 		  = require("multer"),
+  	path 		    = require("path"),
+    fs 			    = require("fs"),
+    request     = require("request");
+
+// Acquire router
+var router = express.Router();
 
 var upload = multer({dest: path.join(__dirname, "../public/images/")});
 
-//INDEX Route
+// INDEX Route
 router.get("/images",function(req,res){
     Image.find({},function(err,allImages){
       if(err){
@@ -23,12 +25,12 @@ router.get("/images",function(req,res){
     });
 });
   
-//NEW Route
+// NEW Route
 router.get("/images/new",middleware.isLoggedIn,function(req,res){
     res.render("images/new");
 });
   
-//CREATE Route
+// CREATE Route
 router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req, res){
       const tempPath = req.file.path;
       const targetPath = path.join(__dirname, "../public/images/"+req.user.username+req.file.originalname);
@@ -54,16 +56,16 @@ router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req,
               }
               else{
                 console.log("API Request successful!")
-                var file_path="/images/" +req.user.username + req.file.originalname;
-                var author={
+                var file_path = "/images/" + req.user.username + req.file.originalname;
+                var author = {
                   id:req.user._id,
                   username:req.user.username
                 };
-                var pub=false;
+                var pub = false;
                 if(req.body.public){
-                  pub=true;
+                  pub = true;
                 }
-                var newImage={
+                var newImage = {
                   img_path:file_path,
                   img_caption:body,
                   img_public:pub,
@@ -83,7 +85,7 @@ router.post("/images",middleware.isLoggedIn,upload.single("photo"),function(req,
         });
 });
   
-//SHOW Route
+// SHOW Route
 router.get("/images/:id",function(req,res){
     Image.findById(req.params.id,function(err,foundImage){
       if(err){
@@ -96,23 +98,23 @@ router.get("/images/:id",function(req,res){
   
 });
   
-//UPDATE Route
+// UPDATE Route
 router.put("/images/:id",middleware.checkImageOwnership,function(req,res){
-    var pub=false;
+    var pub = false;
     if(req.body.public){
-      pub=true;
+      pub = true;
     }
-      Image.updateOne({_id:req.params.id},{img_public:pub},function(err,affected,resp){
-          if(err){
-              res.redirect("/images");
-          }
-          else{
-              res.redirect("/images/" + req.params.id);
-          }
-      });
+    Image.updateOne({_id:req.params.id},{img_public:pub},function(err,affected,resp){
+        if(err){
+            res.redirect("/images");
+        }
+        else{
+            res.redirect("/images/" + req.params.id);
+        }
+    });
 });
   
-//DELETE Route
+// DELETE Route
 router.delete("/images/:id",middleware.checkImageOwnership,function(req,res){
     Image.findById(req.params.id,function(err,foundImage){
       if(err){
@@ -139,4 +141,4 @@ router.delete("/images/:id",middleware.checkImageOwnership,function(req,res){
     });
 });
 
-module.exports=router;
+module.exports = router;

@@ -1,7 +1,9 @@
 var express     = require("express");
-var router      = express.Router();
-var Image  = require("../models/image");
+var Image       = require("../models/image");
 var middleware  = require("../middleware");
+
+// Acquire router
+var router = express.Router();
 
 //USER Routes
 //SHOW Route
@@ -16,4 +18,4 @@ router.get("/user/:id",function(req,res){
     });
   });
 
-module.exports=router;
+module.exports = router;

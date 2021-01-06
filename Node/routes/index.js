@@ -1,22 +1,22 @@
 var express     = require("express");
-var router      = express.Router();
 var passport    = require("passport");
 var User        = require("../models/user");
 
+// Acquire router
+var router = express.Router();
 
-//Root Route
+// Root Route
 router.get("/",function(req,res){
 	res.render("home");
 });
 
 //Auth Routes
-//Sign Up
+//Sign Up Routes
 router.get("/register",function(req,res){
 	res.render("register");
 });
-
 router.post("/register",function(req,res){
-	var newUser=new User({username:req.body.username});
+	var newUser = new User({username:req.body.username});
 	User.register(newUser,req.body.password,function(err,user){
 		if(err){
 			res.redirect("/register");
@@ -45,4 +45,4 @@ router.get("/logout",function(req,res){
 	res.redirect("/images");
 });
 
-module.exports=router;
+module.exports = router;

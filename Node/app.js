@@ -40,7 +40,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // Passing Current User to all
 app.use(function(req,res,next){
-  res.locals.currentUser=req.user;
+  res.locals.currentUser = req.user;
   next();
 });
 

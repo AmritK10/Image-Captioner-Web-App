@@ -1,6 +1,6 @@
 numpy==1.18.5
 matplotlib==3.3.2
-tensorflow==2.3.1
+tensorflow==2.7.2
 opencv-python-headless==4.4.0.46
 Flask==1.1.2
 pillow==8.0.1

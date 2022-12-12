@@ -13,7 +13,7 @@
     "body-parser": "^1.19.0",
     "bootstrap4-toggle": "^3.6.1",
     "ejs": "^2.7.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.0",
     "fs": "0.0.1-security",
     "method-override": "^3.0.0",
